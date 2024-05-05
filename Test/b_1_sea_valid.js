@@ -7,7 +7,7 @@ import('chai').then(chai => {
   });
 
 describe("Test Case B1", function(){
-    it("Location is automatically retrieved and the nearest sea is shown with 20% accuracy.", async function(){
+    it("Location is automatically retrieved and the nearest sea is shown with 5% accuracy.", async function(){
         // Launch the browser
         let driver = await new Builder().forBrowser("firefox").build();
 
@@ -42,9 +42,9 @@ describe("Test Case B1", function(){
         // Assertion #2: The sea is displayed correctly. Test location is Bilkent University Ankara
         sea.should.equal("Black Sea");
 
-        // Assertion #3: The distance is displayed correctly with 20% accuracy.
-        let realDistance = 200.0;
-        let accuracy = realDistance * 0.2;
+        // Assertion #3: The distance is displayed correctly with 5% accuracy.
+        let realDistance = 184.0;
+        let accuracy = realDistance * 0.05;
         /*let withinBoundaries = false;
         if (realDistance - accuracy < distance && realDistance + accuracy > distance) {
             withinBoundaries = true;
