@@ -13,7 +13,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 999; /* Ensures the button is above other elements */
+            z-index: 999;
+            /* Ensures the button is above other elements */
         }
     </style>
 </head>
@@ -22,17 +23,14 @@
 
     <div class='bg-rain'>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8" style="padding-top: 100px;">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-10" style="padding-top: 100px;">
                     <div class="card d-flex justify-content-center align-items-center"
                         style="background-color: #f1f2ed; border-radius: 1rem; padding: 45px 45px;">
 
-                        <div id='loginInfo' class="rounded-1"
-                            style="width: 95%; height: 80%; background-color: #f1f2ed; padding: 50px 50px; font-size: 40px;">
+                        <div class="intro-title" id='loginInfo' class="rounded-1">
                             You have successfully logged in!
-                            This page calculates the nearest sea from your GPS coordinates. 
+                            This page calculates the nearest sea from your GPS coordinates.
                         </div>
                         <button id="getLocation" class="btn btn-teal mt-5">
                             Allow GPS
@@ -46,9 +44,9 @@
 
     <button id="goToThirdScreen" class="btn btn-primary" onclick="redirectToPage()">Go to the third screen</button>
     <script>
-    function redirectToPage() {
-        window.location.href = "/calculate";
-    }
+        function redirectToPage() {
+            window.location.href = "/calculate";
+        }
     </script>
 
 

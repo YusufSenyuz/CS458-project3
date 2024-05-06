@@ -68,26 +68,23 @@
 <body>
     <div class="bg-rain">
         <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8" style="padding-top: 100px;">
+            <div class="row d-flex justify-content-center">
+                <div class=" col-md-8 col-10" style="padding-top: 100px;">
                     <div class="card d-flex justify-content-center align-items-center"
                         style="background-color: #f1f2ed; border-radius: 1rem; padding: 45px 45px;">
 
-                        <h1>Distance to the Sun's Core</h1>
+                        <div class="intro-title">Distance to the Sun's Core</div>
 
                         <button class="btn btn-teal mb-4" onclick="getLocation()">Use My Location</button>
 
                         <form action="/calculate_distance" method="post" id="coordinate_form">
                             <div class="form-group ms-5 me-5 mb-3">
-                                <label for="lat">Latitude:</label>
+                                <label for="lat" class="intro-title">Latitude:</label>
                                 <input class="form-control" type="number" step="0.0001" name="lat" id="lat" required>
                             </div>
 
                             <div class="form-group ms-5 me-5 mb-3">
-                                <label for="lon">Longitude:</label>
+                                <label for="lon" class="intro-title">Longitude:</label>
                                 <input class="form-control" type="number" step="0.0001" name="lon" id="lon" required>
                             </div>
 
