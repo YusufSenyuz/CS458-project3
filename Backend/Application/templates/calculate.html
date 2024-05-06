@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/login.css">
+
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Distance to Sun's Core</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .input-group {
+            display: block; /* Ensures inputs are stacked vertically */
+            margin-bottom: 10px;
+        }
+
+        #distance {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            display: block; /* Centers buttons */
+            margin-top: 10px; /* Adds space between elements */
+        }
+    </style>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(submitLocation, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function submitLocation(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            fetch('/calculate_distance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({lat: lat, lon: lon}),
+            })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("distance").innerHTML = "Distance to Sun's Core: " + data.distance;
+                    })
+                    .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Distance to the Sun's Core</h1>
+
+    <button onclick="getLocation()">Use My Location</button>
+
+    <form action="/calculate_distance" method="post" id="coordinate_form">
+        <div class="input-group">
+            <label for="lat">Latitude:</label>
+            <input type="number" step="0.0001" name="lat" id="lat" required>
+        </div>
+
+        <div class="input-group">
+            <label for="lon">Longitude:</label>
+            <input type="number" step="0.0001" name="lon" id="lon" required>
+        </div>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div id="distance"></div>
+</div>
+</body>
+</html>
