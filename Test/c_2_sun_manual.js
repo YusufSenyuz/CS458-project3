@@ -27,10 +27,10 @@ describe("Test Case B1", function(){
         // Go to third page
         await driver.findElement(By.id("thirdPageButton")).click();
 
-        // Enable GPS
-        await driver.findElement(By.id("enableGPS")).click();
-        driver.switchTo().alert().accept();
-        driver.switchTo().defaultContent();
+        // Enter latitude and longitude
+        await driver.findElement(By.id("latitude")).sendKeys("39.864339");
+        await driver.findElement(By.id("longitude")).sendKeys("32.746444");
+        await driver.findElement(By.id("calculate")).click();
 
         // Retrieve distance to the sun
         let distanceText = await driver.findElement(By.id("distanceInfo")).getText.then(function(value){
