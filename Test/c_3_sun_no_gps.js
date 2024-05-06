@@ -6,8 +6,8 @@ import('chai').then(chai => {
     console.error(err);
   });
 
-describe("Test Case B1", function(){
-    it("Location is automatically retrieved and the nearest sea is shown with 5% accuracy.", async function(){
+describe("Test Case C3", function(){
+    it("GPS isn't enabled and a correct error message is displayed as an alert", async function(){
         // Launch the browser
         let driver = await new Builder().forBrowser("firefox").build();
 
