@@ -1,0 +1,315 @@
+{
+  "stats": {
+    "suites": 6,
+    "tests": 6,
+    "passes": 1,
+    "pending": 0,
+    "failures": 5,
+    "start": "2024-05-06T21:24:52.446Z",
+    "end": "2024-05-06T21:25:15.549Z",
+    "duration": 23103,
+    "testsRegistered": 6,
+    "passPercent": 16.666666666666664,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1ac86eae-6798-4635-9cd2-7af4d9b506a0",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ac9fd41d-fe66-4494-843d-8b9396e08b7e",
+          "title": "Test Case C2",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\c_2_sun_manual.js",
+          "file": "\\test\\c_2_sun_manual.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Location is manually retrieved and the distance to sun is shown with 5% accuracy.",
+              "fullTitle": "Test Case C2 Location is manually retrieved and the distance to sun is shown with 5% accuracy.",
+              "timedOut": null,
+              "duration": 14106,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Launch the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n// Navigate to login page\nawait driver.get(\"http://127.0.0.1:5000/login\");\n// Login\nawait driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\nawait driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n// Assertion #1: Check if login was successful\nlet loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\nawait driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n// Go to third page\nawait driver.findElement(By.id(\"thirdPageButton\")).click();\n// Enter latitude and longitude\nawait driver.findElement(By.id(\"latitude\")).sendKeys(\"39.8643\");\nawait driver.findElement(By.id(\"longitude\")).sendKeys(\"32.7464\");\nawait driver.findElement(By.id(\"calculate\")).click();\nlet distanceInfoElement = await driver.wait(until.elementLocated(By.id('distanceInfo')), 10000);\nlet distanceText = await driver.wait(until.elementIsVisible(distanceInfoElement)).getText();\n\nlet distance = parseFloat(distanceText.substring(24));\n\n// Assertion #2:  The distance is displayed correctly with 5% accuracy.\nlet realDistance = 184.0; // Need to update this with real distance\nlet accuracy = realDistance * 0.05;\n/*let withinBoundaries = false;\nif (realDistance - accuracy < distance && realDistance + accuracy > distance) {\n    withinBoundaries = true;\n}*/\ndistance.should.closeTo(realDistance, accuracy);\n// Close the browser\nawait driver.quit();",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10000ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10000ms\n    at D:\\CS\\CS458\\CS458-project3-maino\\Test\\node_modules\\selenium-webdriver\\lib\\webdriver.js:911:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "d2ce08ba-60da-484c-b2b9-c9c831d7144e",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d2ce08ba-60da-484c-b2b9-c9c831d7144e"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14106,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "7b3375df-a2ac-46e3-92fa-931c2d9ffcc6",
+          "title": "Test Case C5",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\c_5_sun_extreme.js",
+          "file": "\\test\\c_5_sun_extreme.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Equator",
+              "fullTitle": "Test Case C5 Equator",
+              "timedOut": null,
+              "duration": 14264,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Launch the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n// Navigate to login page\nawait driver.get(\"http://127.0.0.1:5000/login\");\n// Login\nawait driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\nawait driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n// Assertion #1: Check if login was successful\nlet loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\nawait driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n// Go to third page\nawait driver.findElement(By.id(\"thirdPageButton\")).click();\n// Enter latitude and longitude\nawait driver.findElement(By.id(\"latitude\")).sendKeys(\"0.0\");\nawait driver.findElement(By.id(\"longitude\")).sendKeys(\"135.0\");\nawait driver.findElement(By.id(\"calculate\")).click();\nlet distanceInfoElement = await driver.wait(until.elementLocated(By.id('distanceInfo')), 10000);\nlet distanceText = await driver.wait(until.elementIsVisible(distanceInfoElement)).getText();\nlet distance = parseFloat(distanceText.substring(24));\n\n// Assertion #2:  The distance is displayed correctly with 5% accuracy.\nlet realDistance = 184.0; // Need to update this with real distance\nlet accuracy = realDistance * 0.05;\n/*let withinBoundaries = false;\nif (realDistance - accuracy < distance && realDistance + accuracy > distance) {\n    withinBoundaries = true;\n}*/\ndistance.should.closeTo(realDistance, accuracy);\n// Close the browser\nawait driver.quit();",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10032ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10032ms\n    at D:\\CS\\CS458\\CS458-project3-maino\\Test\\node_modules\\selenium-webdriver\\lib\\webdriver.js:911:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "53e70c8c-b35d-4b5f-8efb-7a71aea6a8f3",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "53e70c8c-b35d-4b5f-8efb-7a71aea6a8f3"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14264,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "78ff7b8d-0d3b-492d-81d2-9929683cf047",
+          "title": "Test Case C4",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\c_4_sun_outworld.js",
+          "file": "\\test\\c_4_sun_outworld.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Latitude and longitude doesn't exist in the Earth",
+              "fullTitle": "Test Case C4 Latitude and longitude doesn't exist in the Earth",
+              "timedOut": null,
+              "duration": 14294,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Launch the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n// Navigate to login page\nawait driver.get(\"http://127.0.0.1:5000/login\");\n// Login\nawait driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\nawait driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n// Assertion #1: Check if login was successful\nlet loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\nawait driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n// Go to third page\nawait driver.findElement(By.id(\"thirdPageButton\")).click();\n// Enter latitude and longitude\nawait driver.findElement(By.id(\"latitude\")).sendKeys(\"-90.1\");\nawait driver.findElement(By.id(\"longitude\")).sendKeys(\"-180.1\");\nawait driver.findElement(By.id(\"calculate\")).click();\n// Retrieve the error message\nawait driver.wait(until.alertIsPresent(), 10000);  // waits up to 10 seconds for the alert to appear\nlet error = await driver.switchTo().alert().getText();\n\n// Assertion #2: Error message is shown correctly\nerror.should.equal(\"Latitude and longitude is out of bounds.\")\n// Close the browser\nawait driver.quit();",
+              "err": {
+                "message": "TimeoutError: Waiting for alert to be present\nWait timed out after 10211ms",
+                "estack": "TimeoutError: Waiting for alert to be present\nWait timed out after 10211ms\n    at D:\\CS\\CS458\\CS458-project3-maino\\Test\\node_modules\\selenium-webdriver\\lib\\webdriver.js:911:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "67e93f8c-9f2b-4f58-ba3d-5bca1ffefad2",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "67e93f8c-9f2b-4f58-ba3d-5bca1ffefad2"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14294,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "c4b64033-4dbf-48df-99f4-401dc6bc1677",
+          "title": "Test Case C3",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\c_3_sun_no_gps.js",
+          "file": "\\test\\c_3_sun_no_gps.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GPS isn't enabled and a correct error message is displayed as an alert",
+              "fullTitle": "Test Case C3 GPS isn't enabled and a correct error message is displayed as an alert",
+              "timedOut": null,
+              "duration": 14724,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Launch the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n// Navigate to login page\nawait driver.get(\"http://127.0.0.1:5000/login\");\n// Login\nawait driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\nawait driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n\n       // Assertion #1: Check if login was successful\nlet loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\nawait driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n// Go to third page\nawait driver.findElement(By.id(\"thirdPageButton\")).click();\n// Enable GPS\n// Enable GPS and wait for alert\nawait driver.findElement(By.id(\"enableGPS\")).click();\nlet alert = await driver.wait(until.alertIsPresent(), 10000);  // Wait up to 10 seconds for the alert to appear\nlet error = alert.getText();\n\n// Retrieve the error message\nlet errorm = driver.switchTo().alert().getText();\n// Assertion #2: Error message is shown correctly\nerrorm.should.equal(\"Location information is unavailable.\")\n// Close the browser\nawait driver.quit();",
+              "err": {
+                "message": "TimeoutError: Waiting for alert to be present\nWait timed out after 10214ms",
+                "estack": "TimeoutError: Waiting for alert to be present\nWait timed out after 10214ms\n    at D:\\CS\\CS458\\CS458-project3-maino\\Test\\node_modules\\selenium-webdriver\\lib\\webdriver.js:911:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "c82d2862-972a-4b81-a8c0-914f0621c639",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "c82d2862-972a-4b81-a8c0-914f0621c639"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 14724,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "f4a87e02-931b-4d0f-b8c3-3bab2d8132ba",
+          "title": "Test Case B2",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\b_2_sea_no_gps.js",
+          "file": "\\test\\b_2_sea_no_gps.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GPS isn't enabled and a correct error message is displayed as an alert",
+              "fullTitle": "Test Case B2 GPS isn't enabled and a correct error message is displayed as an alert",
+              "timedOut": null,
+              "duration": 14798,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver = await new Builder().forBrowser(\"firefox\").build();\ntry {\n    // Navigate to login page\n    await driver.get(\"http://127.0.0.1:5000/login\");\n    // Login\n    await driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\n    await driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n    // Assertion #1: Check if login was successful\n    let loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\n    await driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n    // Interact with GPS alert\n    await driver.wait(until.alertIsPresent(), 10000);\n    let alert = await driver.switchTo().alert(); // Switch to the alert\n    await alert.dismiss(); // Dismiss the alert by pressing 'Cancel'\n    // Wait for and check the second alert for error message\n    await driver.wait(until.alertIsPresent(), 10000); // Ensure the second alert is present\n    alert = await driver.switchTo().alert(); // Switch to the second alert\n    let error = await alert.getText();\n    // Assertion #2: Verify the error message\n    expect(error).to.equal(\"Location information is unavailable.\");\n} catch (error) {\n    console.error(error);\n} finally {\n    // Close the browser\n    await driver.quit();\n}",
+              "err": {},
+              "uuid": "0cb0a544-e963-43fb-b85e-e97bbeda478f",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0cb0a544-e963-43fb-b85e-e97bbeda478f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 14798,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "0061866b-9348-4336-a7ea-a00353c9727d",
+          "title": "Test Case C1",
+          "fullFile": "D:\\CS\\CS458\\CS458-project3-maino\\Test\\test\\c_1_sun_auto.js",
+          "file": "\\test\\c_1_sun_auto.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Location is automatically retrieved and the distance to sun is shown with 5% accuracy.",
+              "fullTitle": "Test Case C1 Location is automatically retrieved and the distance to sun is shown with 5% accuracy.",
+              "timedOut": null,
+              "duration": 22711,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Launch the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n// Navigate to login page\nawait driver.get(\"http://127.0.0.1:5000/login\");\n// Login\nawait driver.findElement(By.id(\"loginEmail\")).sendKeys(\"cengizhan@ug.bilkent.edu.tr\");\nawait driver.findElement(By.id(\"loginPassword\")).sendKeys(\"pass1234\", Key.RETURN);\n// Assertion #1: Check if login was successful\nlet loginInfoElement = await driver.wait(until.elementLocated(By.id('loginInfo')), 10000);\nawait driver.wait(until.elementTextIs(loginInfoElement, \"You have successfully logged in! This page calculates the nearest sea from your GPS coordinates.\"), 10000);\n// Go to third page\nawait driver.findElement(By.id(\"thirdPageButton\")).click();\n// Enable GPS\nawait driver.findElement(By.id(\"enableGPS\")).click();\nawait driver.wait(until.alertIsPresent(), 10000);\nlet alert = await driver.switchTo().alert(); // Switch to the alert\nawait alert.accept(); // Dismiss the alert by pressing 'Cancel'\n\nlet distanceInfoElement = await driver.wait(until.elementLocated(By.id('distanceInfo')), 10000);\nlet distanceText = await driver.wait(until.elementIsVisible(distanceInfoElement)).getText();\nlet distance = parseFloat(distanceText.substring(24));\n\n// Assertion #2:  The distance is displayed correctly with 5% accuracy.\nlet realDistance = 184.0; // Need to update this with real distance\nlet accuracy = realDistance * 0.05;\n/*let withinBoundaries = false;\nif (realDistance - accuracy < distance && realDistance + accuracy > distance) {\n    withinBoundaries = true;\n}*/\ndistance.should.closeTo(realDistance, accuracy);\n// Close the browser\nawait driver.quit();",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10023ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, *[id=\"distanceInfo\"])\nWait timed out after 10023ms\n    at D:\\CS\\CS458\\CS458-project3-maino\\Test\\node_modules\\selenium-webdriver\\lib\\webdriver.js:911:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": null
+              },
+              "uuid": "4c5739f1-1f2f-4d0b-84dd-3ef84fa1c66a",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "4c5739f1-1f2f-4d0b-84dd-3ef84fa1c66a"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 22711,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.4.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
