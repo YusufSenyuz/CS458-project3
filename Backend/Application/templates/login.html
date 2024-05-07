@@ -1,4 +1,4 @@
-<!DOCTYPE html>mp
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,33 +14,29 @@
    <div class='bg-rain'>
       <div class="container-fluid">
 
-                                                               {% block content %}
-                        <div class="container">
-                            {% for message in get_flashed_messages() %}
-                            <div id= 'errorInfo' class="alert alert-warning">
-                                {{ message }}
-                            </div>
-                            {% endfor %}
-
-                            {% block page_content %}{% endblock %}
-                        </div>
-                        {% endblock %}
-         <div class="row">
-            <div class="col-md-2">
+         {% block content %}
+         <div class="container">
+            {% for message in get_flashed_messages() %}
+            <div id='errorInfo' class="alert alert-warning">
+               {{ message }}
             </div>
-            <div class="col-md-8 text-center" style="padding-top: 200px;">
+            {% endfor %}
+
+            {% block page_content %}{% endblock %}
+         </div>
+         {% endblock %}
+         <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-10 text-center" style="padding-top: 200px;">
                <br />
-               <h2 style="color: white;">Please Log In</h2>
-               <div class="row">
-                  <div class="col-md-3">
-                  </div>
-                  <div class="col-md-6">
+               <div class="intro-title" style="color: white;">Please Log In</div>
+               <div class="row d-flex justify-content-center">
+                  <div class="col-md-8 col-12 ">
                      <div class="card" style="background-color: #f1f2ed; border-radius: 1rem;">
-                        <form class='text-center' method = 'post' onsubmit="return validateInputAndShowModal()">
+                        <form class='text-center' method='post' onsubmit="return validateInputAndShowModal()">
                            <div class="form-group ms-5 me-5 mb-3">
                               <br />
-                              <label for="loginEmail">Email address</label>
-                              <input type="text" class="form-control" id="loginEmail" name = "loginEmail"
+                              <label class="intro-title" for="loginEmail">Email address</label>
+                              <input type="text" class="form-control" id="loginEmail" name="loginEmail"
                                  placeholder="Enter email or number"
                                  pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$)|^\d+$" />
                               <small class="form-text text-muted">
@@ -49,37 +45,38 @@
                            </div>
 
                            <div class="form-group ms-5 me-5 mb-3">
-                              <label for="loginPassword">Password</label>
-                              <input type="password" class="form-control" id="loginPassword" name = "loginPassword" placeholder="Password" />
+                              <label class="intro-title" for="loginPassword">Password</label>
+                              <input type="password" class="form-control" id="loginPassword" name="loginPassword"
+                                 placeholder="Password" />
                            </div>
                            <br />
-                           <button class="btn btn-teal" type="submit" name = 'button' value="Login">
+                           <button class="btn btn-teal" type="submit" name='button' value="Login">
                               Login
                            </button>
                            <div align="center">
-                           <a  class="login-btn" href="google/" style="text-decoration:none;">
-                           <br />
-                           <div class="btn-text">
-                               Login with Google
-                           </div>
-                           <br /><br />
+                              <a class="login-btn" href="google/" style="text-decoration:none;">
+                                 <br />
+                                 <div class="btn-text">
+                                    Login with Google
+                                 </div>
+                                 <br /><br />
 
                         </form>
                      </div>
                   </div>
 
-            </a>
-        </div>
-                           <br /><br />
-                        </form>
-                     </div>
-                  </div>
+                  </a>
                </div>
+               <br /><br />
+               </form>
             </div>
          </div>
       </div>
    </div>
-<div class="modal" tabindex="-1" id="myModal">
+   </div>
+   </div>
+   </div>
+   <div class="modal" tabindex="-1" id="myModal">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
