@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Test for CS 458 Project 3 Distance Calculator Responsive Web App",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --no-timeouts --parallel --reporter mochawesome --require mochawesome/register"
+  },
+  "author": "Cengizhan Terzioglu",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "mochawesome": "^7.1.3",
+    "selenium-webdriver": "^4.20.0"
+  }
+}
