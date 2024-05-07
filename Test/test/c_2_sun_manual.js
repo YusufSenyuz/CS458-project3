@@ -39,10 +39,6 @@ describe("Test Case C2", function(){
         // Assertion #2:  The distance is displayed correctly with 5% accuracy.
         let realDistance = 184.0; // Need to update this with real distance
         let accuracy = realDistance * 0.05;
-        /*let withinBoundaries = false;
-        if (realDistance - accuracy < distance && realDistance + accuracy > distance) {
-            withinBoundaries = true;
-        }*/
         distance.should.closeTo(realDistance, accuracy);
 
         // Close the browser
